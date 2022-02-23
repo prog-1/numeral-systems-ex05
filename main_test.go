@@ -23,9 +23,11 @@ func TestLongMul(t *testing.T) {
 		{"from README", "-10", "-101", "1010"},
 		{"from README", "+10", "-101", "-1010"},
 		{"from README", "-10", "+101", "-1010"},
+
 		{"from README", "0", "0", "0"},
 		{"from README", "-0", "0", "0"},
 		{"from README", "0", "-0", "0"},
+		
 		{"from README", "1", "0", "0"},
 		{"from README", "1", "+0", "0"},
 		{"from README", "1", "-0", "0"},

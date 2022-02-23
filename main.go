@@ -2,7 +2,6 @@ package main
 
 import (
 	"strings"
-	"testing"
 
 	sum "github.com/rchrdsasa207/numeral-systems-ex03"
 )
@@ -42,41 +41,5 @@ func LongMul(a, b string) string {
 	return res
 }
 
-func TestLongMul(t *testing.T) {
-	for _, tc := range []struct {
-		a, b, want string
-	}{
-		{"10", "101", "1010"},
-		{"+10", "101", "1010"},
-		{"10", "+101", "1010"},
-		{"+10", "+101", "1010"},
-		{"-10", "101", "-1010"},
-		{"10", "-101", "-1010"},
-		{"-10", "-101", "1010"},
-		{"+10", "-101", "-1010"},
-		{"-10", "+101", "-1010"},
-		{"0", "0", "0"},
-		{"-0", "0", "0"},
-		{"0", "-0", "0"},
-		{"1", "0", "0"},
-		{"1", "+0", "0"},
-		{"1", "-0", "0"},
-		{"+1", "-0", "0"},
-		{"-1", "+0", "0"},
-		{"1101100100000011", "110111", "1011101001111110100101"},
-	} {
-		if got := LongMul(tc.a, tc.b); got != tc.want {
-			t.Errorf("LongMul(%v, %v) = %v, want = %v", tc.a, tc.b, got, tc.want)
-		}
-	}
-}
-
 func main() {
-	testing.Main(
-		/* matchString */ func(a, b string) (bool, error) { return a == b, nil },
-		/* tests */ []testing.InternalTest{
-			{Name: "TestLongMul", F: TestLongMul},
-		},
-		/* benchmarks */ nil,
-		/* examples */ nil)
 }

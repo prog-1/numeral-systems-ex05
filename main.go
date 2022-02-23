@@ -8,6 +8,7 @@ import (
 )
 
 func LongMul(a, b string) string {
+
 	// Determine positive or negative result number
 	isNegative := (b[0] == '-') != (a[0] == '-')
 	// Remove math sign
@@ -21,7 +22,7 @@ func LongMul(a, b string) string {
 	if a == "0" || b == "0" {
 		return "0"
 	}
-	toSum := make([]string, strings.Count(b, "1"))
+	var res string
 	var i int
 	for j, v := range b {
 		/*
@@ -30,14 +31,9 @@ func LongMul(a, b string) string {
 			Any number multiplied by 1 remains the same, that's why I just add number to sum quee
 		*/
 		if v == '1' {
-			toSum[i] = a + strings.Repeat("0", len(b)-1-j)
+			res = sum.LongAddWithBase(res, a+strings.Repeat("0", len(b)-1-j), 2)
 			i++
 		}
-	}
-	var res string
-	// Sum numbers in slice
-	for _, v := range toSum {
-		res = sum.LongAddWithBase(res, v, 2)
 	}
 	// add minus if needed
 	if isNegative {

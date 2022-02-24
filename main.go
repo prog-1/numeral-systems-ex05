@@ -35,9 +35,9 @@ func LongMul(a, b string) string {
 	}
 	m := make([]byte, len(a)+len(b))
 	if NumberExistsInBase2(a) && NumberExistsInBase2(b) {
-		for i, l := len(a)-1, 0; i >= 0; i-- {
+		for i, l, k := len(a)-1, 0, 0; i >= 0; i-- {
 			var add uint8 // uint8 = byte
-			k := 0
+			k = 0
 			for j := len(b) - 1; j >= 0; j-- {
 				num := (a[i]-'0')*(b[j]-'0') + m[l+k] + add // '0' = 48
 				add = num / 2
@@ -66,13 +66,7 @@ func LongMul(a, b string) string {
 
 func LongMulAnotherVersion(a, b string) string {
 	var s string
-	var isNegative bool
-	if a[0] == '-' || b[0] == '-' {
-		isNegative = true
-	}
-	if a[0] == '-' && b[0] == '-' {
-		isNegative = false
-	}
+	isNegative := (a[0] == '-') != (b[0] == '-')
 	if a[0] == '+' || a[0] == '-' {
 		a = a[1:]
 	}
@@ -84,9 +78,9 @@ func LongMulAnotherVersion(a, b string) string {
 	}
 	m := make([]byte, len(a)+len(b))
 	if NumberExistsInBase2(a) && NumberExistsInBase2(b) {
-		for i, l, k := len(a)-1, 0, 0; i >= 0; i-- {
+		for i, l := len(a)-1, 0; i >= 0; i-- {
 			var add uint8 // uint8 = byte
-			k = 0
+			k := 0
 			for j := len(b) - 1; j >= 0; j-- {
 				num := (a[i]-'0')*(b[j]-'0') + m[l+k] + add // '0' = 48
 				add = num / 2

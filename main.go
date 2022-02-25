@@ -19,9 +19,10 @@ func LongMul(a, b string) (output string) {
 		return "0"
 	}
 	ab := make([]byte, len(a)+len(b))
-	for i, ia, ib := len(a)-1, 0, 0; i >= 0; i-- {
+	var ia int
+	for i := len(a) - 1; i >= 0; i-- {
 		var carry byte
-		ib = 0
+		ib := 0
 		for j := len(b) - 1; j >= 0; j-- {
 			mul := (a[i]-'0')*(b[j]-'0') + ab[ia+ib] + carry
 			carry = mul / 2
@@ -43,6 +44,7 @@ func LongMul(a, b string) (output string) {
 	if sign == 1 {
 		res = "-" + res
 	}
+
 	return res
 }
 
